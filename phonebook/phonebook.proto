@@ -3,17 +3,19 @@ package phonebook;
 
 service PhoneBookHandler {
     rpc GetList(GetListRequest) returns (GetListResponse);
+	rpc GetDetail(GetDetailRequest) returns (GetDetailResponse);
 }
 
 message GetListRequest {
-    string name = 1;
-	string phone_number = 2;
-	int64 regency_id = 3;  
-	int64 district_id = 4; 
-	int64 village_id = 5;  
-	int64 status = 6;       
-	int64 limit = 7;  
-	int64 page = 8;   
+    string search = 1;
+	int64 regency_id = 2;  
+	int64 district_id = 3; 
+	int64 village_id = 4;  
+	int64 status = 5;       
+	int64 limit = 6;  
+	int64 page = 7;
+	string longitude = 8;
+	string latitude = 9;   
 }
 
 message GetListResponse {
@@ -32,14 +34,31 @@ message PhoneBook {
 	string description = 3;
 	string name = 4;
 	string address = 5;
-	int64 regency_id = 6;
-	int64 district_id = 7;
-	int64 village_id = 8;
-	string latitude = 9;
-	string longitude = 10;
-	string cover_image_path = 11;
-	int64 status = 12;
-	string created_at = 13;
-	string updated_at = 14;
-	int64 category_id = 15;
+	string latitude = 6;
+	string longitude = 7;
+	int64 status = 8;
+	string category = 9;
+	string distance = 10;
+}
+
+message GetDetailRequest {
+	int64 id = 1;
+}
+
+message GetDetailResponse {
+	int64 id = 1;
+	string phone_number = 2;
+	string description = 3;
+	string name = 4;
+	string address = 5;
+	string latitude = 6;
+	string longitude = 7;
+	int64 status = 8;
+	string created_at = 9;
+	string updated_at = 10;
+	string category = 11;
+	string distance = 12;
+	string regency = 13;
+	string district = 14;
+	string village = 15;
 }
