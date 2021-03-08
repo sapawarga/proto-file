@@ -25,14 +25,15 @@ var _ = math.Inf
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
 type GetListRequest struct {
-	Name                 string   `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	PhoneNumber          string   `protobuf:"bytes,2,opt,name=phone_number,json=phoneNumber,proto3" json:"phone_number,omitempty"`
-	RegencyId            int64    `protobuf:"varint,3,opt,name=regency_id,json=regencyId,proto3" json:"regency_id,omitempty"`
-	DistrictId           int64    `protobuf:"varint,4,opt,name=district_id,json=districtId,proto3" json:"district_id,omitempty"`
-	VillageId            int64    `protobuf:"varint,5,opt,name=village_id,json=villageId,proto3" json:"village_id,omitempty"`
-	Status               int64    `protobuf:"varint,6,opt,name=status,proto3" json:"status,omitempty"`
-	Limit                int64    `protobuf:"varint,7,opt,name=limit,proto3" json:"limit,omitempty"`
-	Page                 int64    `protobuf:"varint,8,opt,name=page,proto3" json:"page,omitempty"`
+	Search               string   `protobuf:"bytes,1,opt,name=search,proto3" json:"search,omitempty"`
+	RegencyId            int64    `protobuf:"varint,2,opt,name=regency_id,json=regencyId,proto3" json:"regency_id,omitempty"`
+	DistrictId           int64    `protobuf:"varint,3,opt,name=district_id,json=districtId,proto3" json:"district_id,omitempty"`
+	VillageId            int64    `protobuf:"varint,4,opt,name=village_id,json=villageId,proto3" json:"village_id,omitempty"`
+	Status               int64    `protobuf:"varint,5,opt,name=status,proto3" json:"status,omitempty"`
+	Limit                int64    `protobuf:"varint,6,opt,name=limit,proto3" json:"limit,omitempty"`
+	Page                 int64    `protobuf:"varint,7,opt,name=page,proto3" json:"page,omitempty"`
+	Longitude            string   `protobuf:"bytes,8,opt,name=longitude,proto3" json:"longitude,omitempty"`
+	Latitude             string   `protobuf:"bytes,9,opt,name=latitude,proto3" json:"latitude,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -63,16 +64,9 @@ func (m *GetListRequest) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_GetListRequest proto.InternalMessageInfo
 
-func (m *GetListRequest) GetName() string {
+func (m *GetListRequest) GetSearch() string {
 	if m != nil {
-		return m.Name
-	}
-	return ""
-}
-
-func (m *GetListRequest) GetPhoneNumber() string {
-	if m != nil {
-		return m.PhoneNumber
+		return m.Search
 	}
 	return ""
 }
@@ -117,6 +111,20 @@ func (m *GetListRequest) GetPage() int64 {
 		return m.Page
 	}
 	return 0
+}
+
+func (m *GetListRequest) GetLongitude() string {
+	if m != nil {
+		return m.Longitude
+	}
+	return ""
+}
+
+func (m *GetListRequest) GetLatitude() string {
+	if m != nil {
+		return m.Latitude
+	}
+	return ""
 }
 
 type GetListResponse struct {
@@ -219,16 +227,11 @@ type PhoneBook struct {
 	Description          string   `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
 	Name                 string   `protobuf:"bytes,4,opt,name=name,proto3" json:"name,omitempty"`
 	Address              string   `protobuf:"bytes,5,opt,name=address,proto3" json:"address,omitempty"`
-	RegencyId            int64    `protobuf:"varint,6,opt,name=regency_id,json=regencyId,proto3" json:"regency_id,omitempty"`
-	DistrictId           int64    `protobuf:"varint,7,opt,name=district_id,json=districtId,proto3" json:"district_id,omitempty"`
-	VillageId            int64    `protobuf:"varint,8,opt,name=village_id,json=villageId,proto3" json:"village_id,omitempty"`
-	Latitude             string   `protobuf:"bytes,9,opt,name=latitude,proto3" json:"latitude,omitempty"`
-	Longitude            string   `protobuf:"bytes,10,opt,name=longitude,proto3" json:"longitude,omitempty"`
-	CoverImagePath       string   `protobuf:"bytes,11,opt,name=cover_image_path,json=coverImagePath,proto3" json:"cover_image_path,omitempty"`
-	Status               int64    `protobuf:"varint,12,opt,name=status,proto3" json:"status,omitempty"`
-	CreatedAt            string   `protobuf:"bytes,13,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	UpdatedAt            string   `protobuf:"bytes,14,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
-	CategoryId           int64    `protobuf:"varint,15,opt,name=category_id,json=categoryId,proto3" json:"category_id,omitempty"`
+	Latitude             string   `protobuf:"bytes,6,opt,name=latitude,proto3" json:"latitude,omitempty"`
+	Longitude            string   `protobuf:"bytes,7,opt,name=longitude,proto3" json:"longitude,omitempty"`
+	Status               int64    `protobuf:"varint,8,opt,name=status,proto3" json:"status,omitempty"`
+	Category             string   `protobuf:"bytes,9,opt,name=category,proto3" json:"category,omitempty"`
+	Distance             string   `protobuf:"bytes,10,opt,name=distance,proto3" json:"distance,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -294,27 +297,6 @@ func (m *PhoneBook) GetAddress() string {
 	return ""
 }
 
-func (m *PhoneBook) GetRegencyId() int64 {
-	if m != nil {
-		return m.RegencyId
-	}
-	return 0
-}
-
-func (m *PhoneBook) GetDistrictId() int64 {
-	if m != nil {
-		return m.DistrictId
-	}
-	return 0
-}
-
-func (m *PhoneBook) GetVillageId() int64 {
-	if m != nil {
-		return m.VillageId
-	}
-	return 0
-}
-
 func (m *PhoneBook) GetLatitude() string {
 	if m != nil {
 		return m.Latitude
@@ -329,13 +311,6 @@ func (m *PhoneBook) GetLongitude() string {
 	return ""
 }
 
-func (m *PhoneBook) GetCoverImagePath() string {
-	if m != nil {
-		return m.CoverImagePath
-	}
-	return ""
-}
-
 func (m *PhoneBook) GetStatus() int64 {
 	if m != nil {
 		return m.Status
@@ -343,25 +318,208 @@ func (m *PhoneBook) GetStatus() int64 {
 	return 0
 }
 
-func (m *PhoneBook) GetCreatedAt() string {
+func (m *PhoneBook) GetCategory() string {
+	if m != nil {
+		return m.Category
+	}
+	return ""
+}
+
+func (m *PhoneBook) GetDistance() string {
+	if m != nil {
+		return m.Distance
+	}
+	return ""
+}
+
+type GetDetailRequest struct {
+	Id                   int64    `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *GetDetailRequest) Reset()         { *m = GetDetailRequest{} }
+func (m *GetDetailRequest) String() string { return proto.CompactTextString(m) }
+func (*GetDetailRequest) ProtoMessage()    {}
+func (*GetDetailRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_34db5399df65ad55, []int{4}
+}
+
+func (m *GetDetailRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_GetDetailRequest.Unmarshal(m, b)
+}
+func (m *GetDetailRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_GetDetailRequest.Marshal(b, m, deterministic)
+}
+func (m *GetDetailRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetDetailRequest.Merge(m, src)
+}
+func (m *GetDetailRequest) XXX_Size() int {
+	return xxx_messageInfo_GetDetailRequest.Size(m)
+}
+func (m *GetDetailRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetDetailRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_GetDetailRequest proto.InternalMessageInfo
+
+func (m *GetDetailRequest) GetId() int64 {
+	if m != nil {
+		return m.Id
+	}
+	return 0
+}
+
+type GetDetailResponse struct {
+	Id                   int64    `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	PhoneNumber          string   `protobuf:"bytes,2,opt,name=phone_number,json=phoneNumber,proto3" json:"phone_number,omitempty"`
+	Description          string   `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
+	Name                 string   `protobuf:"bytes,4,opt,name=name,proto3" json:"name,omitempty"`
+	Address              string   `protobuf:"bytes,5,opt,name=address,proto3" json:"address,omitempty"`
+	Latitude             string   `protobuf:"bytes,6,opt,name=latitude,proto3" json:"latitude,omitempty"`
+	Longitude            string   `protobuf:"bytes,7,opt,name=longitude,proto3" json:"longitude,omitempty"`
+	Status               int64    `protobuf:"varint,8,opt,name=status,proto3" json:"status,omitempty"`
+	CreatedAt            string   `protobuf:"bytes,9,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	UpdatedAt            string   `protobuf:"bytes,10,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	Category             string   `protobuf:"bytes,11,opt,name=category,proto3" json:"category,omitempty"`
+	Distance             string   `protobuf:"bytes,12,opt,name=distance,proto3" json:"distance,omitempty"`
+	Regency              string   `protobuf:"bytes,13,opt,name=regency,proto3" json:"regency,omitempty"`
+	District             string   `protobuf:"bytes,14,opt,name=district,proto3" json:"district,omitempty"`
+	Village              string   `protobuf:"bytes,15,opt,name=village,proto3" json:"village,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *GetDetailResponse) Reset()         { *m = GetDetailResponse{} }
+func (m *GetDetailResponse) String() string { return proto.CompactTextString(m) }
+func (*GetDetailResponse) ProtoMessage()    {}
+func (*GetDetailResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_34db5399df65ad55, []int{5}
+}
+
+func (m *GetDetailResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_GetDetailResponse.Unmarshal(m, b)
+}
+func (m *GetDetailResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_GetDetailResponse.Marshal(b, m, deterministic)
+}
+func (m *GetDetailResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetDetailResponse.Merge(m, src)
+}
+func (m *GetDetailResponse) XXX_Size() int {
+	return xxx_messageInfo_GetDetailResponse.Size(m)
+}
+func (m *GetDetailResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetDetailResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_GetDetailResponse proto.InternalMessageInfo
+
+func (m *GetDetailResponse) GetId() int64 {
+	if m != nil {
+		return m.Id
+	}
+	return 0
+}
+
+func (m *GetDetailResponse) GetPhoneNumber() string {
+	if m != nil {
+		return m.PhoneNumber
+	}
+	return ""
+}
+
+func (m *GetDetailResponse) GetDescription() string {
+	if m != nil {
+		return m.Description
+	}
+	return ""
+}
+
+func (m *GetDetailResponse) GetName() string {
+	if m != nil {
+		return m.Name
+	}
+	return ""
+}
+
+func (m *GetDetailResponse) GetAddress() string {
+	if m != nil {
+		return m.Address
+	}
+	return ""
+}
+
+func (m *GetDetailResponse) GetLatitude() string {
+	if m != nil {
+		return m.Latitude
+	}
+	return ""
+}
+
+func (m *GetDetailResponse) GetLongitude() string {
+	if m != nil {
+		return m.Longitude
+	}
+	return ""
+}
+
+func (m *GetDetailResponse) GetStatus() int64 {
+	if m != nil {
+		return m.Status
+	}
+	return 0
+}
+
+func (m *GetDetailResponse) GetCreatedAt() string {
 	if m != nil {
 		return m.CreatedAt
 	}
 	return ""
 }
 
-func (m *PhoneBook) GetUpdatedAt() string {
+func (m *GetDetailResponse) GetUpdatedAt() string {
 	if m != nil {
 		return m.UpdatedAt
 	}
 	return ""
 }
 
-func (m *PhoneBook) GetCategoryId() int64 {
+func (m *GetDetailResponse) GetCategory() string {
 	if m != nil {
-		return m.CategoryId
+		return m.Category
 	}
-	return 0
+	return ""
+}
+
+func (m *GetDetailResponse) GetDistance() string {
+	if m != nil {
+		return m.Distance
+	}
+	return ""
+}
+
+func (m *GetDetailResponse) GetRegency() string {
+	if m != nil {
+		return m.Regency
+	}
+	return ""
+}
+
+func (m *GetDetailResponse) GetDistrict() string {
+	if m != nil {
+		return m.District
+	}
+	return ""
+}
+
+func (m *GetDetailResponse) GetVillage() string {
+	if m != nil {
+		return m.Village
+	}
+	return ""
 }
 
 func init() {
@@ -369,42 +527,49 @@ func init() {
 	proto.RegisterType((*GetListResponse)(nil), "phonebook.GetListResponse")
 	proto.RegisterType((*Metadata)(nil), "phonebook.Metadata")
 	proto.RegisterType((*PhoneBook)(nil), "phonebook.PhoneBook")
+	proto.RegisterType((*GetDetailRequest)(nil), "phonebook.GetDetailRequest")
+	proto.RegisterType((*GetDetailResponse)(nil), "phonebook.GetDetailResponse")
 }
 
 func init() { proto.RegisterFile("phonebook.proto", fileDescriptor_34db5399df65ad55) }
 
 var fileDescriptor_34db5399df65ad55 = []byte{
-	// 480 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x8c, 0x93, 0xcf, 0x6e, 0x13, 0x31,
-	0x10, 0xc6, 0xb5, 0x49, 0x9a, 0x64, 0x67, 0x4b, 0x52, 0x99, 0x0a, 0x99, 0x88, 0x8a, 0x90, 0x53,
-	0x4e, 0x45, 0x0a, 0x3c, 0x00, 0xe5, 0x02, 0x91, 0x00, 0x55, 0x2b, 0xee, 0x91, 0xb3, 0x1e, 0x25,
-	0x56, 0x37, 0xeb, 0xc5, 0x9e, 0x54, 0xe2, 0x0d, 0x79, 0x14, 0x1e, 0x03, 0x79, 0xf6, 0x4f, 0xb6,
-	0x15, 0x52, 0x7b, 0xf3, 0xfc, 0xbe, 0x19, 0xdb, 0xe3, 0x6f, 0x0c, 0xd3, 0x72, 0x6f, 0x0b, 0xdc,
-	0x5a, 0x7b, 0x77, 0x5d, 0x3a, 0x4b, 0x56, 0xc4, 0x2d, 0x58, 0xfc, 0x8d, 0x60, 0xf2, 0x05, 0xe9,
-	0x9b, 0xf1, 0x94, 0xe2, 0xaf, 0x23, 0x7a, 0x12, 0x02, 0x06, 0x85, 0x3a, 0xa0, 0x8c, 0xe6, 0xd1,
-	0x32, 0x4e, 0x79, 0x2d, 0xde, 0xc1, 0x39, 0xd7, 0x6c, 0x8a, 0xe3, 0x61, 0x8b, 0x4e, 0xf6, 0x58,
-	0x4b, 0x98, 0xfd, 0x60, 0x24, 0xae, 0x00, 0x1c, 0xee, 0xb0, 0xc8, 0x7e, 0x6f, 0x8c, 0x96, 0xfd,
-	0x79, 0xb4, 0xec, 0xa7, 0x71, 0x4d, 0xd6, 0x5a, 0xbc, 0x85, 0x44, 0x1b, 0x4f, 0xce, 0x64, 0x14,
-	0xf4, 0x01, 0xeb, 0xd0, 0xa0, 0xb5, 0x0e, 0xf5, 0xf7, 0x26, 0xcf, 0xd5, 0x0e, 0x83, 0x7e, 0x56,
-	0xd5, 0xd7, 0x64, 0xad, 0xc5, 0x2b, 0x18, 0x7a, 0x52, 0x74, 0xf4, 0x72, 0xc8, 0x52, 0x1d, 0x89,
-	0x4b, 0x38, 0xcb, 0xcd, 0xc1, 0x90, 0x1c, 0x31, 0xae, 0x82, 0xd0, 0x43, 0xa9, 0x76, 0x28, 0xc7,
-	0x0c, 0x79, 0xbd, 0xc8, 0x61, 0xda, 0x76, 0xea, 0x4b, 0x5b, 0x78, 0x14, 0x4b, 0x18, 0x68, 0x45,
-	0x4a, 0x46, 0xf3, 0xfe, 0x32, 0x59, 0x5d, 0x5e, 0x9f, 0x1e, 0xea, 0x36, 0xac, 0x3e, 0x5b, 0x7b,
-	0x97, 0x72, 0x86, 0x78, 0x0f, 0xe3, 0x03, 0x92, 0xe2, 0xec, 0xd0, 0x7c, 0xb2, 0x7a, 0xd9, 0xc9,
-	0xfe, 0x5e, 0x4b, 0x69, 0x9b, 0xb4, 0xf8, 0x08, 0xe3, 0x86, 0xb6, 0xb7, 0x89, 0x4e, 0xb7, 0x09,
-	0xf7, 0x26, 0x4b, 0x2a, 0xe7, 0xdd, 0xfa, 0x69, 0x15, 0x2c, 0xfe, 0xf4, 0x21, 0x6e, 0x8f, 0x16,
-	0x13, 0xe8, 0x19, 0x5d, 0x57, 0xf5, 0x8c, 0x7e, 0x8e, 0x0b, 0x73, 0x48, 0x34, 0xfa, 0xcc, 0x99,
-	0x92, 0x8c, 0x2d, 0xd8, 0x86, 0x38, 0xed, 0xa2, 0xd6, 0xde, 0x41, 0xc7, 0x5e, 0x09, 0x23, 0xa5,
-	0xb5, 0x43, 0xef, 0xf9, 0xe1, 0xe3, 0xb4, 0x09, 0x1f, 0xb9, 0x3a, 0x7c, 0xc2, 0xd5, 0xd1, 0x13,
-	0xae, 0x8e, 0x1f, 0xbb, 0x3a, 0x83, 0x71, 0xae, 0xc8, 0xd0, 0x51, 0xa3, 0x8c, 0xf9, 0xe4, 0x36,
-	0x16, 0x6f, 0x20, 0xce, 0x6d, 0xb1, 0xab, 0x44, 0x60, 0xf1, 0x04, 0xc4, 0x12, 0x2e, 0x32, 0x7b,
-	0x8f, 0x6e, 0x63, 0x0e, 0x61, 0xf3, 0x52, 0xd1, 0x5e, 0x26, 0x9c, 0x34, 0x61, 0xbe, 0x0e, 0xf8,
-	0x56, 0xd1, 0xbe, 0x33, 0x39, 0xe7, 0x0f, 0x26, 0xe7, 0x0a, 0x20, 0x73, 0xa8, 0x08, 0xf5, 0x46,
-	0x91, 0x7c, 0x51, 0x1d, 0x50, 0x93, 0x1b, 0x0a, 0xf2, 0xb1, 0xd4, 0x8d, 0x3c, 0xa9, 0xe4, 0x9a,
-	0xdc, 0x50, 0xe8, 0x3c, 0x53, 0x84, 0x3b, 0xeb, 0xf8, 0x65, 0xa6, 0x55, 0xe7, 0x0d, 0x5a, 0xeb,
-	0xd5, 0x4f, 0xb8, 0x68, 0x9d, 0xfc, 0xaa, 0x0a, 0x9d, 0xa3, 0x13, 0x9f, 0x60, 0x54, 0x8f, 0xa0,
-	0x78, 0xdd, 0x19, 0x9f, 0x87, 0x1f, 0x70, 0x36, 0xfb, 0x9f, 0x54, 0x4d, 0xec, 0x76, 0xc8, 0x3f,
-	0xf8, 0xc3, 0xbf, 0x00, 0x00, 0x00, 0xff, 0xff, 0x18, 0xd8, 0x8a, 0x49, 0xd4, 0x03, 0x00, 0x00,
+	// 547 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xdc, 0x54, 0xdd, 0x8e, 0xd3, 0x3c,
+	0x10, 0x55, 0xfa, 0x1b, 0x4f, 0xf6, 0x6b, 0xf7, 0x33, 0x15, 0x32, 0x65, 0x57, 0x94, 0x5c, 0xf5,
+	0x6a, 0x91, 0x0a, 0x0f, 0xc0, 0x22, 0xc4, 0x52, 0x09, 0x10, 0xca, 0x0b, 0x54, 0x6e, 0x3c, 0xea,
+	0x5a, 0x9b, 0xc6, 0x21, 0x99, 0x22, 0xed, 0x35, 0x2f, 0xc1, 0x05, 0xcf, 0xc0, 0x33, 0x22, 0x3b,
+	0x4e, 0xda, 0xac, 0x56, 0x3c, 0x00, 0x77, 0x3e, 0xe7, 0xcc, 0xd4, 0xf5, 0x39, 0x93, 0x81, 0x69,
+	0x71, 0x6b, 0x72, 0xdc, 0x1a, 0x73, 0x77, 0x55, 0x94, 0x86, 0x0c, 0x67, 0x2d, 0x11, 0xff, 0xe8,
+	0xc1, 0xe4, 0x06, 0xe9, 0x93, 0xae, 0x28, 0xc1, 0x6f, 0x07, 0xac, 0x88, 0x3f, 0x85, 0x51, 0x85,
+	0xb2, 0x4c, 0x6f, 0x45, 0xb0, 0x08, 0x96, 0x2c, 0xf1, 0x88, 0x5f, 0x02, 0x94, 0xb8, 0xc3, 0x3c,
+	0xbd, 0xdf, 0x68, 0x25, 0x7a, 0x8b, 0x60, 0xd9, 0x4f, 0x98, 0x67, 0xd6, 0x8a, 0xbf, 0x80, 0x48,
+	0xe9, 0x8a, 0x4a, 0x9d, 0x92, 0xd5, 0xfb, 0x4e, 0x87, 0x86, 0x5a, 0x2b, 0xdb, 0xff, 0x5d, 0x67,
+	0x99, 0xdc, 0xa1, 0xd5, 0x07, 0x75, 0xbf, 0x67, 0xd6, 0xca, 0x5d, 0x4b, 0x92, 0x0e, 0x95, 0x18,
+	0x3a, 0xc9, 0x23, 0x3e, 0x83, 0x61, 0xa6, 0xf7, 0x9a, 0xc4, 0xc8, 0xd1, 0x35, 0xe0, 0x1c, 0x06,
+	0x85, 0xdc, 0xa1, 0x18, 0x3b, 0xd2, 0x9d, 0xf9, 0x05, 0xb0, 0xcc, 0xe4, 0x3b, 0x4d, 0x07, 0x85,
+	0x22, 0x74, 0xff, 0xfd, 0x48, 0xf0, 0x39, 0x84, 0x99, 0xa4, 0x5a, 0x64, 0x4e, 0x6c, 0x71, 0x9c,
+	0xc1, 0xb4, 0x35, 0xa1, 0x2a, 0x4c, 0x5e, 0x21, 0x5f, 0xc2, 0x40, 0x49, 0x92, 0x22, 0x58, 0xf4,
+	0x97, 0xd1, 0x6a, 0x76, 0x75, 0xf4, 0xf0, 0xab, 0x3d, 0xbd, 0x33, 0xe6, 0x2e, 0x71, 0x15, 0xfc,
+	0x15, 0x84, 0x7b, 0x24, 0xe9, 0xaa, 0xad, 0x2b, 0xd1, 0xea, 0xc9, 0x49, 0xf5, 0x67, 0x2f, 0x25,
+	0x6d, 0x51, 0xfc, 0x06, 0xc2, 0x86, 0x6d, 0xdf, 0x11, 0x9c, 0xbc, 0x63, 0x06, 0x43, 0x32, 0x24,
+	0x33, 0xef, 0x71, 0x0d, 0xe2, 0x9f, 0x3d, 0x60, 0xed, 0xd5, 0x7c, 0x02, 0x3d, 0xad, 0x7c, 0x57,
+	0x4f, 0x2b, 0xfe, 0x12, 0xce, 0xdc, 0x9d, 0x9b, 0xfc, 0xb0, 0xdf, 0x62, 0xe9, 0x5a, 0x59, 0x12,
+	0x39, 0xee, 0x8b, 0xa3, 0xf8, 0x02, 0x22, 0x85, 0x55, 0x5a, 0xea, 0x82, 0xb4, 0xc9, 0x5d, 0x40,
+	0x2c, 0x39, 0xa5, 0xec, 0x9f, 0xc9, 0xe5, 0x1e, 0x5d, 0x36, 0x2c, 0x71, 0x67, 0x2e, 0x60, 0x2c,
+	0x95, 0x2a, 0xb1, 0xaa, 0x73, 0x61, 0x49, 0x03, 0x3b, 0x86, 0x8e, 0xba, 0x86, 0x76, 0xa3, 0x18,
+	0x3f, 0x8c, 0xe2, 0x18, 0x75, 0xd8, 0x89, 0x7a, 0x0e, 0x61, 0x2a, 0x09, 0x77, 0xa6, 0xbc, 0x6f,
+	0x22, 0x6a, 0xb0, 0xd5, 0xec, 0x2c, 0xc9, 0x3c, 0x45, 0x01, 0xb5, 0xd6, 0xe0, 0x38, 0x86, 0xf3,
+	0x1b, 0xa4, 0xf7, 0x48, 0x52, 0x67, 0xcd, 0x14, 0x3f, 0x30, 0x28, 0xfe, 0xdd, 0x87, 0xff, 0x4f,
+	0x8a, 0x7c, 0xca, 0xff, 0xa4, 0x8d, 0x97, 0x00, 0x69, 0x89, 0x92, 0x50, 0x6d, 0x24, 0x79, 0x23,
+	0x99, 0x67, 0xae, 0xc9, 0xca, 0x87, 0x42, 0x35, 0x72, 0xed, 0x25, 0xf3, 0xcc, 0x35, 0x75, 0x42,
+	0x88, 0xfe, 0x12, 0xc2, 0x59, 0x37, 0x04, 0xfb, 0x42, 0xbf, 0x0c, 0xc4, 0x7f, 0xf5, 0x0b, 0x3d,
+	0x6c, 0xba, 0xec, 0x1a, 0x10, 0x93, 0x63, 0x97, 0xc5, 0xb6, 0xcb, 0xaf, 0x00, 0x31, 0xad, 0xbb,
+	0x3c, 0x5c, 0xfd, 0x0a, 0xe0, 0xbc, 0x9d, 0xf7, 0x8f, 0x32, 0x57, 0x19, 0x96, 0xfc, 0x2d, 0x8c,
+	0xfd, 0x87, 0xca, 0x9f, 0x9d, 0x7c, 0x64, 0xdd, 0x0d, 0x36, 0x9f, 0x3f, 0x26, 0xf9, 0xc4, 0x3f,
+	0x00, 0x6b, 0xc7, 0x80, 0x3f, 0xef, 0x16, 0x76, 0x26, 0x68, 0x7e, 0xf1, 0xb8, 0x58, 0xff, 0xce,
+	0x76, 0xe4, 0x56, 0xe9, 0xeb, 0x3f, 0x01, 0x00, 0x00, 0xff, 0xff, 0xa5, 0x22, 0xe9, 0x68, 0x5d,
+	0x05, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -420,6 +585,7 @@ const _ = grpc.SupportPackageIsVersion4
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type PhoneBookHandlerClient interface {
 	GetList(ctx context.Context, in *GetListRequest, opts ...grpc.CallOption) (*GetListResponse, error)
+	GetDetail(ctx context.Context, in *GetDetailRequest, opts ...grpc.CallOption) (*GetDetailResponse, error)
 }
 
 type phoneBookHandlerClient struct {
@@ -439,9 +605,19 @@ func (c *phoneBookHandlerClient) GetList(ctx context.Context, in *GetListRequest
 	return out, nil
 }
 
+func (c *phoneBookHandlerClient) GetDetail(ctx context.Context, in *GetDetailRequest, opts ...grpc.CallOption) (*GetDetailResponse, error) {
+	out := new(GetDetailResponse)
+	err := c.cc.Invoke(ctx, "/phonebook.PhoneBookHandler/GetDetail", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // PhoneBookHandlerServer is the server API for PhoneBookHandler service.
 type PhoneBookHandlerServer interface {
 	GetList(context.Context, *GetListRequest) (*GetListResponse, error)
+	GetDetail(context.Context, *GetDetailRequest) (*GetDetailResponse, error)
 }
 
 // UnimplementedPhoneBookHandlerServer can be embedded to have forward compatible implementations.
@@ -450,6 +626,9 @@ type UnimplementedPhoneBookHandlerServer struct {
 
 func (*UnimplementedPhoneBookHandlerServer) GetList(ctx context.Context, req *GetListRequest) (*GetListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetList not implemented")
+}
+func (*UnimplementedPhoneBookHandlerServer) GetDetail(ctx context.Context, req *GetDetailRequest) (*GetDetailResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetDetail not implemented")
 }
 
 func RegisterPhoneBookHandlerServer(s *grpc.Server, srv PhoneBookHandlerServer) {
@@ -474,6 +653,24 @@ func _PhoneBookHandler_GetList_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
+func _PhoneBookHandler_GetDetail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetDetailRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PhoneBookHandlerServer).GetDetail(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/phonebook.PhoneBookHandler/GetDetail",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PhoneBookHandlerServer).GetDetail(ctx, req.(*GetDetailRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _PhoneBookHandler_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "phonebook.PhoneBookHandler",
 	HandlerType: (*PhoneBookHandlerServer)(nil),
@@ -481,6 +678,10 @@ var _PhoneBookHandler_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetList",
 			Handler:    _PhoneBookHandler_GetList_Handler,
+		},
+		{
+			MethodName: "GetDetail",
+			Handler:    _PhoneBookHandler_GetDetail_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
