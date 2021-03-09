@@ -30,7 +30,7 @@ message Metadata {
 
 message PhoneBook {
     int64 id = 1;
-	string phone_number = 2;
+	string phone_numbers = 2;
 	string description = 3;
 	string name = 4;
 	string address = 5;
@@ -47,7 +47,7 @@ message GetDetailRequest {
 
 message GetDetailResponse {
 	int64 id = 1;
-	string phone_number = 2;
+	string phone_numbers = 2;
 	string description = 3;
 	string name = 4;
 	string address = 5;
@@ -56,9 +56,13 @@ message GetDetailResponse {
 	int64 status = 8;
 	string created_at = 9;
 	string updated_at = 10;
-	string category = 11;
-	string distance = 12;
-	string regency = 13;
-	string district = 14;
-	string village = 15;
+	int64 category_id = 11;
+	string category_name = 12;
+	string distance = 13;
+	int64 regency_id = 14;
+	string regency_name = 15;
+	int64 district_id = 16;
+	string district_name = 17;
+	int64 village_id = 18;
+	string village_name = 19;
 }
