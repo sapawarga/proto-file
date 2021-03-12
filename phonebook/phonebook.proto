@@ -5,6 +5,7 @@ service PhoneBookHandler {
     rpc GetList(GetListRequest) returns (GetListResponse);
 	rpc GetDetail(GetDetailRequest) returns (GetDetailResponse);
 	rpc AddPhonebook(AddPhonebookRequest) returns (StatusResponse);
+	rpc UpdatePhonebook(UpdatePhonebookRequest) returns (StatusResponse);
 }
 
 message GetListRequest {
@@ -86,4 +87,20 @@ message AddPhonebookRequest {
 message StatusResponse {
 	string code = 1;
 	string message = 2;
+}
+
+message UpdatePhonebookRequest {
+	int64 id = 1;
+	string name = 2;
+	string phone_numbers = 3;
+	string address = 4;
+	string description = 5;
+	int64 regency_id = 6;
+	int64 district_id = 7;
+	int64 village_id = 8;
+	string latitude = 9;
+	string longitude = 10;
+	string cover_image_path = 11; 
+	int64 status = 12;
+	int64 category_id = 13;
 }
