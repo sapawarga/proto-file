@@ -6,6 +6,7 @@ service PhoneBookHandler {
 	rpc GetDetail(GetDetailRequest) returns (GetDetailResponse);
 	rpc AddPhonebook(AddPhonebookRequest) returns (StatusResponse);
 	rpc UpdatePhonebook(UpdatePhonebookRequest) returns (StatusResponse);
+	rpc DeletePhonebook(GetDetailRequest) returns (StatusResponse);
 }
 
 message GetListRequest {
