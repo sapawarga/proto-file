@@ -102,7 +102,7 @@ message UpdatePhonebookRequest {
 	string latitude = 9;
 	string longitude = 10;
 	string cover_image_path = 11; 
-	int64 status = 12;
+	NullInt64 status = 12;
 	int64 category_id = 13;
 }
 
