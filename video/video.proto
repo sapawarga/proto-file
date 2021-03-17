@@ -2,10 +2,10 @@ syntax = "proto3";
 package video;
 
 service VideoHandler {
-    rpc GetListVideo(GetListVideRequest) returns (GetListVideoResponse);
+    rpc GetListVideo(GetListVideoRequest) returns (GetListVideoResponse);
 }
 
-message GetListVideRequest {
+message GetListVideoRequest {
     int64 regency_id = 1;
     int64 page = 2;
 }
