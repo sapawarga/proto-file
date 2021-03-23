@@ -4,6 +4,7 @@ package video;
 service VideoHandler {
     rpc GetListVideo(GetListVideoRequest) returns (GetListVideoResponse);
     rpc GetDetailVideo(RequestID) returns (GetDetailVideoResponse);
+    rpc GetStatisticVideo(NonRequest) returns (GetStatisticVideoResponse);
 }
 
 message GetListVideoRequest {
@@ -54,4 +55,16 @@ message GetDetailVideoResponse {
     string updated_at = 11;
     int64 created_by = 12;
     int64 updated_by = 13;
+}
+
+message NonRequest {}
+
+message GetStatisticVideoResponse {
+    repeated VideoStatistic data = 1;
+}
+
+message VideoStatistic {
+    int64 id = 1;
+    string name = 2;
+    int64 count = 3;
 }
