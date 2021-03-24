@@ -6,6 +6,7 @@ service VideoHandler {
     rpc GetDetailVideo(RequestID) returns (GetDetailVideoResponse);
     rpc GetStatisticVideo(NonRequest) returns (GetStatisticVideoResponse);
     rpc CreateNewVideo(CreateVideoRequest) returns (StatusResponse);
+    rpc UpdateVideo(UpdateVideoRequest) returns (StatusResponse);
 }
 
 message GetListVideoRequest {
@@ -77,6 +78,16 @@ message CreateVideoRequest {
 	int64 regency_id = 4;
 	string video_url = 5;
 	int64 status = 6;
+}
+
+message UpdateVideoRequest {
+    int64 id = 1;
+    string title = 2;
+	string source = 3;
+	int64 category_id = 4;
+	int64 regency_id = 5;
+	string video_url = 6;
+	int64 status = 7;
 }
 
 message StatusResponse {
