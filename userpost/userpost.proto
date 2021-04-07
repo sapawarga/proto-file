@@ -3,6 +3,11 @@ package userpost;
 
 service UserPostHandler {
     rpc GetListUserPost(GetListUserPostRequest) returns (GetListUserPostResponse);
+	rpc GetDetailUserPost(ByID) returns (UserPost);
+}
+
+message ByID {
+	int64 id = 1;
 }
 
 message GetListUserPostRequest {
