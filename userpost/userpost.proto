@@ -4,6 +4,7 @@ package userpost;
 service UserPostHandler {
     rpc GetListUserPost(GetListUserPostRequest) returns (GetListUserPostResponse);
 	rpc GetDetailUserPost(ByID) returns (UserPost);
+	rpc CreateNewPost(CreateNewPostRequest) returns (StatusResponse);
 }
 
 message ByID {
@@ -68,4 +69,20 @@ message Actor {
 	string district = 6;
 	string village = 7;
 	string rw = 8;
+}
+
+message CreateNewPostRequest {
+	string title = 1;
+	repeated Image images = 2;
+	string tags = 3;
+	int64 status = 4;
+}
+
+message Image {
+	string path = 1;
+}
+
+message StatusResponse {
+	string code = 1;
+	string message = 2;
 }
