@@ -5,6 +5,7 @@ service UserPostHandler {
     rpc GetListUserPost(GetListUserPostRequest) returns (GetListUserPostResponse);
 	rpc GetDetailUserPost(ByID) returns (UserPost);
 	rpc CreateNewPost(CreateNewPostRequest) returns (StatusResponse);
+	rpc UpdatetitleOrDescription(UpdateUserPostRequest) returns (StatusResponse);
 }
 
 message ByID {
@@ -85,4 +86,10 @@ message Image {
 message StatusResponse {
 	string code = 1;
 	string message = 2;
+}
+
+message UpdateUserPostRequest {
+	int64 id = 1;
+	string title = 2;
+	int64 status = 3;
 }
