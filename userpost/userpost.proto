@@ -5,7 +5,7 @@ service UserPostHandler {
     rpc GetListUserPost(GetListUserPostRequest) returns (GetListUserPostResponse);
 	rpc GetDetailUserPost(ByID) returns (UserPost);
 	rpc CreateNewPost(CreateNewPostRequest) returns (StatusResponse);
-	rpc UpdatetitleOrDescription(UpdateUserPostRequest) returns (StatusResponse);
+	rpc UpdateStatusOrTitle(UpdateUserPostRequest) returns (StatusResponse);
 }
 
 message ByID {
