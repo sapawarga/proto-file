@@ -7,6 +7,7 @@ service UserPostHandler {
 	rpc CreateNewPost(CreateNewPostRequest) returns (StatusResponse);
 	rpc UpdateStatusOrTitle(UpdateUserPostRequest) returns (StatusResponse);
 	rpc GetCommentsByID(ByID) returns (CommentsResponse);
+	rpc CreateComment(CreateCommentRequest) returns (StatusResponse);
 }
 
 message ByID {
@@ -97,4 +98,10 @@ message UpdateUserPostRequest {
 
 message CommentsResponse {
 	repeated Comment comments = 1;
+}
+
+message CreateCommentRequest {
+	int64 user_post_id =1;
+	string comment = 2;
+	int64 status = 3;
 }
