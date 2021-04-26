@@ -8,6 +8,7 @@ service UserPostHandler {
 	rpc UpdateStatusOrTitle(UpdateUserPostRequest) returns (StatusResponse);
 	rpc GetCommentsByID(ByID) returns (CommentsResponse);
 	rpc CreateComment(CreateCommentRequest) returns (StatusResponse);
+	rpc GetListUserPostByMe(GetListUserPostRequest) returns (GetListUserPostResponse);
 }
 
 message ByID {
