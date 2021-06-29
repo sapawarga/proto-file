@@ -1,0 +1,16 @@
+syntax = "proto3";
+package auth;
+option go_package="../auth";
+
+service AuthHandler {
+    rpc DecodeToken(RequestDecodeToken) returns (ResponsesDecodeToken);
+}
+
+message RequestDecodeToken {}
+
+message ResponsesDecodeToken {
+    int64 id = 1;
+    string username = 2;
+    string role_label = 3;
+    string last_login_at = 4;
+}
