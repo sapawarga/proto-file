@@ -1,5 +1,7 @@
 syntax = "proto3";
 package video;
+option go_package="../video";
+
 
 service VideoHandler {
     rpc GetListVideo(GetListVideoRequest) returns (GetListVideoResponse);
