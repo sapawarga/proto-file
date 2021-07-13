@@ -4,13 +4,47 @@ option go_package="../auth";
 
 service AuthHandler {
     rpc DecodeToken(RequestDecodeToken) returns (ResponsesDecodeToken);
+    rpc GetUserDetailByAccessToken(RequestDecodeToken) returns (ResponseUserDetail);
 }
 
 message RequestDecodeToken {}
 
 message ResponsesDecodeToken {
-    int64 id = 1;
-    string username = 2;
-    string role_label = 3;
-    string last_login_at = 4;
+    int64   id              = 1;
+    string  username        = 2;
+    string  role_label      = 3;
+    string  last_login_at   = 4;
+}
+
+message ResponseUserDetail {
+    int64   id                  = 1;
+    string  username            = 2;
+    string  email               = 3;
+    int64   last_login_at       = 4;
+    string  role_label          = 5;
+    string  name                = 6;
+    string  phone               = 7;
+    string  address             = 8;
+    int64   job_type_id         = 9;
+    string  job_type            = 10;
+    int64   education_level_id  = 11; 
+    string  education_level     = 12;
+    string  birth_date          = 13;
+    string  rt                  = 14;
+    string  rw                  = 15;
+    int64   village_id          = 16;
+    string  village             = 17;
+    int64   district_id         = 18;
+    string  district            = 19;
+    int64   regency_id          = 20;
+    string  regency             = 21;
+    string  latitude            = 22;
+    string  longitude           = 23;
+    string  photo_url           = 24;
+    string  facebook            = 25;
+    string  twitter             = 26;
+    string  instagram           = 27;
+    int64   password_updated_at = 28;
+    int64   profile_updated_at  = 29;
+    int64   last_access_at      = 30;
 }
