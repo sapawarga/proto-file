@@ -1,5 +1,7 @@
 syntax = "proto3";
 package phonebook;
+option go_package="../phonebook";
+
 
 service PhoneBookHandler {
     rpc GetList(GetListRequest) returns (GetListResponse);
